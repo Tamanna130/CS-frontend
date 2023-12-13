@@ -27,7 +27,7 @@ export default function AppHeader(){
                 </Nav>
                 <Nav>
                     <Nav.Link href="#profile"><i>Profile</i></Nav.Link>
-                    <Nav.Link href="#logout" className="justify-content-end">Log Out</Nav.Link>
+                    <Nav.Link href="/login" className="justify-content-end">Log In</Nav.Link>
 
                 </Nav>
                 </Navbar.Collapse>
