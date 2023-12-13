@@ -6,7 +6,7 @@ import Home from './pages/homePage';
 import DiscussionForum from './pages/forum';
 import ForumComment from './pages/forumComment';
 import Loginpage from './pages/Loginpage'
-
+import Signuppage from './pages/Signuppage';
 
 
 function App() {
@@ -14,7 +14,7 @@ function App() {
     <BrowserRouter>
       <Routes>
           <Route path="/login" element={<Loginpage/>}/>
-          
+          <Route path="/signup" element={<Signuppage/>}/>
           <Route path="/" element={<Home />}/>
           <Route path="/studentroom/discussionforum" element={<DiscussionForum />}/>
         </Routes>
