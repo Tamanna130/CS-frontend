@@ -29,7 +29,7 @@ export default function SectionCard() {
           <Card.Text>
           Perform a mock test and review your answers.
           </Card.Text>
-          <Button variant="primary">Visit Section</Button>
+          <Button variant="primary" href='/studentroom/mocktest'>Visit Section</Button>
         </Card.Body>
       </Card>
       </div>
