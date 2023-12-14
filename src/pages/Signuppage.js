@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Form, FormGroup, FormControl, Button, Alert } from "react-bootstrap";
 import StudentImage from "../templates/Base/images/student.jpg";
+import LoginImage from "../templates/Base/images/Capture.png"
 
 const Signuppage = () => {
  const [username, setUsername] = useState("");
@@ -32,7 +33,7 @@ const Signuppage = () => {
 
  return (
     <div
-      className="container"
+      className="base"
       style={{
         display: "flex",
         flexDirection: "row",
@@ -83,7 +84,7 @@ const Signuppage = () => {
       <div
         className="right"
         style={{
-          background: "linear-gradient(90deg, #5D54A4, #7C78B8)",
+          // background: "linear-gradient(90deg, #5D54A4, #7C78B8)",
           boxShadow: "0px 0px 24px #5C5696",
           borderRadius: "16px",
           overflow: "hidden",
@@ -91,9 +92,13 @@ const Signuppage = () => {
           width: "360px",
           display: "flex",
           flexDirection: "column",
-          backgroundImage: "../templates/Base/images/Capture.PNG",
+          backgroundImage: `url(${LoginImage})`,
+          backgroundSize: "cover",
+          backgroundRepeat: "no-repeat",
+          // backgroundPosition: "-5% -5%",
           // justifyContent: "center",
           alignItems: "center",
+
         }}
       >
       <h2 className="signup_title" style={{
@@ -115,7 +120,7 @@ const Signuppage = () => {
               borderRadius: "4px",
               padding: "10px",
               marginBottom: "10px",
-              width: "300px"
+              width: "200px"
             }}
           />
         </FormGroup>

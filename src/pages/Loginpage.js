@@ -13,7 +13,8 @@ const Loginpage = () => {
 
     try {
       // Simulated API call to authenticate user
-      const response = await fetch("/api/login", {
+      const response = await fetch("http://localhost:5000",
+        {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

@@ -34,7 +34,7 @@ export default function DiscussionForum() {
   const addPosts = async (e) => {
     e.preventDefault();
 
-        await fetch('http://127.0.0.1:3000/api/post/create', {
+        await fetch("http://localhost:5000", {
         method: 'POST',
         body: JSON.stringify({
             title: title,
@@ -60,7 +60,7 @@ export default function DiscussionForum() {
 };
 
     useEffect(() => {
-      fetch('http://127.0.0.1:3000/api/post/all')
+      fetch("http://localhost:5000")
          .then((response) => response.json())
          .then((data) => {
             console.log(data);
