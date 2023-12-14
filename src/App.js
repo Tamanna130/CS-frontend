@@ -7,8 +7,7 @@ import DiscussionForum from './pages/forum';
 import ForumComment from './pages/forumComment';
 import Loginpage from './pages/Loginpage'
 import Signuppage from './pages/Signuppage';
-
-
+import MockTestPage from './pages/mock_test/MockTestPage';
 function App() {
   return (
     <BrowserRouter>
@@ -17,6 +16,7 @@ function App() {
           <Route path="/signup" element={<Signuppage/>}/>
           <Route path="/" element={<Home />}/>
           <Route path="/studentroom/discussionforum" element={<DiscussionForum />}/>
+          <Route path='/studentroom/mocktest' element={<MockTestPage/>}/>
         </Routes>
       
     </BrowserRouter>

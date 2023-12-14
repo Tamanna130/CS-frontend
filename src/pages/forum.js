@@ -5,7 +5,7 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import ForumAccordion from '../templates/Base/Accordion';
 import SinglePost from './singlePost';
-
+import {fetchWithAuth} from '../hooks/fetchHook';
 
 export default function DiscussionForum() {
   const [title, setTitle] = useState('')
@@ -22,36 +22,30 @@ export default function DiscussionForum() {
     return links;
   }
   
-  // Example usage:
-  // var sampleParagraph = "http://9779.info/%E6%A0%91%E5%8F%B6%E7%B2%98%E8%B4%B4%E7%94%BB/";
-  
-  // var extractedLinks = extractLinksFromParagraph(sampleParagraph);
-  
-  // console.log("Extracted Links:", extractedLinks);
-  
   
 
   const addPosts = async (e) => {
     e.preventDefault();
-
-        await fetch('http://127.0.0.1:3000/api/post/create', {
-        method: 'POST',
-        body: JSON.stringify({
-            title: title,
-            description: description,
-            author: "Tamanna"
-        }),
-        headers: {
-            'Content-type': 'application/json' ,
-        },
-    })
-    .then((response) => response.json())
+    const fig={
+      method: 'POST',
+      body: JSON.stringify({
+          title: title,
+          description: description,
+          author: localStorage.getItem('username'),
+      }),
+      headers: {
+          'Content-type': 'application/json' ,
+      },
+  };
+  console.log(fig);
+    fetchWithAuth('http://127.0.0.1:3000/api/post/create', fig )
+    .then((response) => {console.log(response); return response.json()})
     .then((data) => {
         console.log(data)
         if(data.error ){
           throw new Error(data.error)
         }
-        setPosts((posts) => [data, ...posts]);
+        setPosts((posts) => [...posts,data]);
     })
     .catch((err) => {
         console.log("Error in creating post:", err.message);
@@ -60,7 +54,7 @@ export default function DiscussionForum() {
 };
 
     useEffect(() => {
-      fetch('http://127.0.0.1:3000/api/post/all')
+      fetchWithAuth('http://127.0.0.1:3000/api/post/all')
          .then((response) => response.json())
          .then((data) => {
             console.log(data);
