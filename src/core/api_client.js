@@ -30,6 +30,19 @@ const updateExamCategory = async (examCategory) => {
     console.log(fig);
     return fetchWithAuth('http://127.0.0.1:3000/api/mocktest/examCategory/update', fig);
 }
+const deleteExamCategory = async (id) => {
+    const fig={
+        method: 'DELETE',
+        body: JSON.stringify({
+            id: id
+        }),
+        headers: {
+            'Content-type': 'application/json' ,
+        },
+    };
+    console.log(fig);
+    return fetchWithAuth('http://127.0.0.1:3000/api/mocktest/examCategory/delete', fig);
+}
 
 
-export {addExamCategory, getExamCategories, updateExamCategory}
+export {addExamCategory, getExamCategories, updateExamCategory,deleteExamCategory}

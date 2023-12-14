@@ -11,7 +11,7 @@ export default function () {
         <div>
             <AppHeader/>
                 <AddExamCategories callReload={() => setReload(!reload)}/>
-                <ViewExamCategories reload={reload}/>
+                <ViewExamCategories reload={reload} callReload={() => setReload(!reload)}/>
         </div>
     )
 }
