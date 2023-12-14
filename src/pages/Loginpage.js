@@ -1,14 +1,11 @@
 import React, { useState } from "react";
 import { Form, FormGroup, FormControl, Button, Alert } from "react-bootstrap";
 import StudentImage from "../templates/Base/images/student.jpg";
-<<<<<<< HEAD
 import LoginImage from "../templates/Base/images/Capture.png"
 
-=======
 import { login } from "../stores/reducers/userInfo";
 import { useDispatch } from "react-redux";
 import {jwtDecode} from 'jwt-decode';
->>>>>>> 95fc6ff400751a5811b07904a04da292f15d6daa
 const Loginpage = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -19,12 +16,8 @@ const Loginpage = () => {
 
     try {
       // Simulated API call to authenticate user
-<<<<<<< HEAD
-      const response = await fetch("http://localhost:5000",
-        {
-=======
+
       const response = await fetch("http://127.0.0.1:3000/user/login", {
->>>>>>> 95fc6ff400751a5811b07904a04da292f15d6daa
         method: "POST",
         headers: {
           "Content-Type": "application/json",

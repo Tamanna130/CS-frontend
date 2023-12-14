@@ -26,21 +26,6 @@ export default function DiscussionForum() {
 
   const addPosts = async (e) => {
     e.preventDefault();
-<<<<<<< HEAD
-
-        await fetch("http://localhost:5000", {
-        method: 'POST',
-        body: JSON.stringify({
-            title: title,
-            description: description,
-            author: "Tamanna"
-        }),
-        headers: {
-            'Content-type': 'application/json' ,
-        },
-    })
-    .then((response) => response.json())
-=======
     const fig={
       method: 'POST',
       body: JSON.stringify({
@@ -55,7 +40,6 @@ export default function DiscussionForum() {
   console.log(fig);
     fetchWithAuth('http://127.0.0.1:3000/api/post/create', fig )
     .then((response) => {console.log(response); return response.json()})
->>>>>>> 95fc6ff400751a5811b07904a04da292f15d6daa
     .then((data) => {
         console.log(data)
         if(data.error ){
@@ -70,11 +54,7 @@ export default function DiscussionForum() {
 };
 
     useEffect(() => {
-<<<<<<< HEAD
-      fetch("http://localhost:5000")
-=======
       fetchWithAuth('http://127.0.0.1:3000/api/post/all')
->>>>>>> 95fc6ff400751a5811b07904a04da292f15d6daa
          .then((response) => response.json())
          .then((data) => {
             console.log(data);
