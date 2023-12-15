@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
-import AddExamCategories from './components/addExamCategories.js'
-import ViewExamCategories from './components/viewExamCategories.js'
-import AppHeader from '../../templates/Base/Navbar.js'
-import { updateExamCategory } from '../../core/api_client.js';
+import AddExamCategories from '../components/addExamCategories.js'
+import ViewExamCategories from '../components/viewExamCategories.js'
+import AppHeader from '../../../templates/Base/Navbar.js'
+import { updateExamCategory } from '../../../core/api_client.js';
 function EditExamCategoryModal(props) {
     const [examCategory, setExamCategory] = useState(props.examCategory);
     const handleSubmit = async (e) => {
