@@ -7,11 +7,11 @@ export default function AppHeader(){
     return(
         <Navbar expand="lg" className="bg-body-tertiary" bg="dark" data-bs-theme="dark"> 
             <Container>
-                <Navbar.Brand href="#home">StudentRoom</Navbar.Brand>
+                <Navbar.Brand href="/">StudentRoom</Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
                 <Nav className="me-auto">
-                    <Nav.Link href="#home">Home</Nav.Link>
+                    <Nav.Link href="/">Home</Nav.Link>
                     {/* <Nav.Link href="#link">Link</Nav.Link> */}
                     {/* <NavDropdown title="Dropdown" id="basic-nav-dropdown">
                     <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>

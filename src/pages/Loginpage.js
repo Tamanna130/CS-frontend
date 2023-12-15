@@ -3,6 +3,9 @@ import { Form, FormGroup, FormControl, Button, Alert } from "react-bootstrap";
 import StudentImage from "../templates/Base/images/student.jpg";
 import LoginImage from "../templates/Base/images/Capture.png"
 
+import { login } from "../stores/reducers/userInfo";
+import { useDispatch } from "react-redux";
+import {jwtDecode} from 'jwt-decode';
 const Loginpage = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -13,8 +16,8 @@ const Loginpage = () => {
 
     try {
       // Simulated API call to authenticate user
-      const response = await fetch("http://localhost:5000",
-        {
+
+      const response = await fetch("http://127.0.0.1:3000/user/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -24,9 +27,10 @@ const Loginpage = () => {
 
       const data = await response.json();
 
-      if (data.success) {
+      if (data) {
         // Redirect to protected page or store token
-        console.log("Login successful!");
+        localStorage.setItem("token", data.access_token);
+        localStorage.setItem("username", jwtDecode(data.access_token).username);
         // ...
       } else {
         setErrorMessage(data.message);
