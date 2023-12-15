@@ -53,7 +53,9 @@ function EditExamCategoryModal(props) {
                 }}>Exam Time</label>
                     <input type="text" value={examCategory.examTime} className="form-control" id="examTime" placeholder="Enter Exam Time" style={{ width: "100%", border: "2px solid #ddd" }} onChange={(e) => setExamCategory({...examCategory, examTime: e.target.value})}/>
                     </div>
-                    <button type="submit" className="btn btn-primary">Submit</button>
+                    
+                    <button type="submit" className="btn btn-primary" style={{ backgroundColor: "#4caf50", marginTop: "20px" }}>Submit</button>
+                    
                 </form>
                 </div>
 
