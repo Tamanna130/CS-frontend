@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { Form, FormGroup, FormControl, Button, Alert } from "react-bootstrap";
 import StudentImage from "../templates/Base/images/student.jpg";
+import LoginImage from "../templates/Base/images/Capture.PNG"
+
 import { login } from "../stores/reducers/userInfo";
 import { useDispatch } from "react-redux";
 import {jwtDecode} from 'jwt-decode';
@@ -14,6 +16,7 @@ const Loginpage = () => {
 
     try {
       // Simulated API call to authenticate user
+
       const response = await fetch("http://127.0.0.1:3000/user/login", {
         method: "POST",
         headers: {
@@ -42,7 +45,7 @@ const Loginpage = () => {
 
   return (
     <div
-      className="container"
+      className="base"
       style={{
         display: "flex",
         flexDirection: "row",
@@ -93,7 +96,7 @@ const Loginpage = () => {
       <div
         className="right"
         style={{
-          background: "linear-gradient(90deg, #5D54A4, #7C78B8)",
+          // background: "linear-gradient(90deg, #5D54A4, #7C78B8)",
           boxShadow: "0px 0px 24px #5C5696",
           borderRadius: "16px",
           overflow: "hidden",
@@ -101,7 +104,10 @@ const Loginpage = () => {
           width: "360px",
           display: "flex",
           flexDirection: "column",
-          backgroundImage: "../templates/Base/images/Capture.PNG",
+          backgroundImage: `url(${LoginImage})`,
+          backgroundSize: "cover",
+          backgroundRepeat: "no-repeat",
+          // backgroundPosition: "-5% -5%",
           // justifyContent: "center",
           alignItems: "center",
         }}

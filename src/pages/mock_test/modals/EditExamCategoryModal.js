@@ -18,24 +18,44 @@ function EditExamCategoryModal(props) {
         }
     }
     return (
-        <div>
+        <div style={{
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+            alignItems: "center"
+        }}>
             {/* <AppHeader/> */}
-            <div className="container">
-                <h2>Edit Exam Categories</h2>
+            <div className="container" style={{
+            border: "2px solid #ddd", // Darker gray border
+            padding: "20px", // Padding for form container
+            borderRadius: "10px", // Rounded corners
+          }}>
+                <h2 style={{ color: "#4caf50" }}>Edit Exam Categories</h2>
                 <form onSubmit={handleSubmit}>
                     <div className="form-group">
-                    <label htmlFor="courseName">Course Name</label>
-                    <input type="text" value={examCategory.courseName} className="form-control" id="courseName" placeholder="Enter Course Name" onChange={(e) => setExamCategory({...examCategory, courseName: e.target.value})}/>
+                    <label htmlFor="courseName" style={{
+                              color: "linear-gradient(to right, #007bff, #66b2ff)", // Subtle gradient for labels
+                              
+                }}>Course Name</label>
+                    <input type="text" value={examCategory.courseName} className="form-control" id="courseName" placeholder="Enter Course Name" style={{ width: "100%", border: "2px solid #ddd" }} onChange={(e) => setExamCategory({...examCategory, courseName: e.target.value})}/>
                     </div>
                     <div className="form-group">
-                    <label htmlFor="topicName">Topic Name</label>
-                    <input type="text" value={examCategory.topicName} className="form-control" id="topicName" placeholder="Enter Topic Name" onChange={(e) => setExamCategory({...examCategory, topicName: e.target.value})}/>
+                    <label htmlFor="topicName" tyle={{
+                              color: "linear-gradient(to right, #007bff, #66b2ff)", // Subtle gradient for labels
+                              fontSize: "20px"
+                }}>Topic Name</label>
+                    <input type="text" value={examCategory.topicName} className="form-control" id="topicName" placeholder="Enter Topic Name" style={{ width: "100%", border: "2px solid #ddd" }} onChange={(e) => setExamCategory({...examCategory, topicName: e.target.value})}/>
                     </div>
                     <div className="form-group">
-                    <label htmlFor="examTime">Exam Time</label>
-                    <input type="text" value={examCategory.examTime} className="form-control" id="examTime" placeholder="Enter Exam Time" onChange={(e) => setExamCategory({...examCategory, examTime: e.target.value})}/>
+                    <label htmlFor="examTime" tyle={{
+                              color: "linear-gradient(to right, #007bff, #66b2ff)", // Subtle gradient for labels
+                              fontSize: "20px"
+                }}>Exam Time</label>
+                    <input type="text" value={examCategory.examTime} className="form-control" id="examTime" placeholder="Enter Exam Time" style={{ width: "100%", border: "2px solid #ddd" }} onChange={(e) => setExamCategory({...examCategory, examTime: e.target.value})}/>
                     </div>
-                    <button type="submit" className="btn btn-primary">Submit</button>
+                    
+                    <button type="submit" className="btn btn-primary" style={{ backgroundColor: "#4caf50", marginTop: "20px" }}>Submit</button>
+                    
                 </form>
                 </div>
 

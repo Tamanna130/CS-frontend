@@ -8,10 +8,18 @@ export default function () {
         setReload(false);
     }, [reload]);
     return (
-        <div>
-            <AppHeader/>
+        <div><AppHeader/>
+        <div style={{
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "center",
+                alignItems: "center"
+        }}
+        >
+            
                 <AddExamCategories callReload={() => setReload(!reload)}/>
                 <ViewExamCategories reload={reload} callReload={() => setReload(!reload)}/>
-        </div>
+            </div>
+            </div>
     )
 }

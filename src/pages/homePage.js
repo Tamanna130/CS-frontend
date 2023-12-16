@@ -7,7 +7,6 @@ import SectionCard from '../templates/Base/HomepageCards';
 export default function Home() {
   return (
     <>
-        <AppHeader></AppHeader>
         <HomeCarousel></HomeCarousel>
 
         <Container>
