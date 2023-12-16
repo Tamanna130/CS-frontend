@@ -44,6 +44,11 @@ const deleteExamCategory = async (id) => {
     return fetchWithAuth('http://127.0.0.1:3000/api/mocktest/examCategory/delete', fig);
 }
 
+
+const getExamCategory = async (id) => {
+    return fetchWithAuth(`http://127.0.0.1:3000/api/mocktest/examCategory/get/${id}`);
+}
+
 const addQuestion = async (question) => {
     const fig={
         method: 'POST',
@@ -55,7 +60,7 @@ const addQuestion = async (question) => {
         },
     };
     console.log(fig);
-    return fetchWithAuth('http://127.0.0.1:3000/api/mocktest/question/create', fig);
+    return fetchWithAuth('http://127.0.0.1:3000/api/mocktest/addQuestion', fig);
 }
 
 const getQuestions = async (id) => {
@@ -85,4 +90,4 @@ const updateQuestion = async (question) => {
     return fetchWithAuth('http://127.0.0.1:3000/api/mocktest/question/update', fig);
 }
 
-export {addExamCategory, getExamCategories, updateExamCategory,deleteExamCategory, addQuestion, getQuestions, updateQuestion};
+export {addExamCategory, getExamCategories, getExamCategory, updateExamCategory,deleteExamCategory, addQuestion, getQuestions, updateQuestion};

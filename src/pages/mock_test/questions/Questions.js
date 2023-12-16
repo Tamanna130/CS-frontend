@@ -73,7 +73,7 @@ function Questions(props) {
                         </tr>
                     </thead>
                     <tbody>
-                        {/* {isLoading ? <tr><td>Loading...</td></tr> : examCategories.map((examCategory) => {
+                        {isLoading ? <tr><td>Loading...</td></tr> : examCategories.map((examCategory) => {
                             
                             return (
                                 <tr key={examCategory._id} >
@@ -84,14 +84,7 @@ function Questions(props) {
                                     <td><button className="btn btn-primary" style={{ backgroundColor: colors.editButton }} onClick={() => navigate(`/studentroom/mocktest/add-questions/${examCategory._id}`)}>Select</button></td>
                                 </tr>
                             )
-                        })} */}
-                        <tr key={"1"} >
-                                    <th scope="row">{"jsshj"}</th>
-                                    <td>{"jskaj"}</td>
-                                    <td>{"jskaj"}</td>
-                                    <td>{"jskaj"}</td>
-                                    <td><button className="btn btn-primary" style={{ backgroundColor: colors.editButton }} onClick={() => navigate(`/studentroom/mocktest/add-questions/${"12"}`)}>Select</button></td>
-                                </tr>
+                        })}
 
                     </tbody>
                 </table>

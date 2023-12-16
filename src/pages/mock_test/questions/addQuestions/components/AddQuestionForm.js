@@ -1,14 +1,33 @@
 import React from "react";
-import { addExamCategory } from "../../../../../core/api_client";
-import { useState } from "react";
+import { addQuestion, getExamCategory } from "../../../../../core/api_client";
+import { useParams } from 'react-router-dom';
+import { useState, useEffect } from "react";
 export default function AddQuestionForm(props) {
-  const [questions, setQuestions] = useState({});
+    const [questions, setQuestions] = useState({});
+    const { id } = useParams();
+    const [examCategory, setExamCategory] = useState({});
+    //useEfffect
+    useEffect(() => { 
+        getExamCategory(id)
+            .then((response) => response.json())
+            .then((data) => {
+                console.log(data);
+                setExamCategory(data);
+            })
+            .catch((err) => {
+                console.log("Error in fetching exam categories:", err.message);
+                alert(err.message);
+            });
+    }, []);
+
+    console.log(id)
   const handleSubmit = async (e) => {
     e.preventDefault();
-    try {
-      const response = await addExamCategory(questions);
+      try {
+        console.log(questions)
+      const response = await addQuestion({...questions, _id: id});
       console.log(response);
-      alert("Exam Category Added Successfully");
+      alert("Questions were Added Successfully");
       props.callReload();
     } catch (error) {
       console.log(error);
@@ -19,7 +38,7 @@ export default function AddQuestionForm(props) {
     <>
       <div className="header">
         <h2 style={{ color: "#4caf50", margin: "10px 0px 0px 50px" }}>
-          Add Question in Exam Category - Chapter 9{" "}
+          Add Question in Exam Category - {examCategory.courseName}
         </h2>
       </div>
       <div
@@ -61,13 +80,13 @@ export default function AddQuestionForm(props) {
               <input
                 type="text"
                 className="form-control"
-                id="courseName"
+                id="question"
                 placeholder="Add question"
                 style={{ width: "100%", border: "2px solid #ddd" }}
                 onChange={(e) =>
                   setQuestions({
                     ...questions,
-                    courseName: e.target.value,
+                    "question": e.target.value,
                   })
                 }
               />
@@ -81,18 +100,18 @@ export default function AddQuestionForm(props) {
                   fontSize: "20px",
                 }}
               >
-                Add Question 1
+                Option 1
               </label>
               <input
                 type="text"
                 className="form-control"
-                id="courseName"
-                placeholder="Add question"
+                id="option1"
+                placeholder="Add Option"
                 style={{ width: "100%", border: "2px solid #ddd" }}
                 onChange={(e) =>
                   setQuestions({
                     ...questions,
-                    courseName: e.target.value,
+                    "option1": e.target.value,
                   })
                 }
               />
@@ -106,18 +125,18 @@ export default function AddQuestionForm(props) {
                   fontSize: "20px",
                 }}
               >
-                Add Question 2
+                Option 2
               </label>
               <input
                 type="text"
                 className="form-control"
-                id="courseName"
-                placeholder="Add question"
+                id="option2"
+                placeholder="Add Option"
                 style={{ width: "100%", border: "2px solid #ddd" }}
                 onChange={(e) =>
                   setQuestions({
                     ...questions,
-                    courseName: e.target.value,
+                    "option2": e.target.value,
                   })
                 }
               />
@@ -131,18 +150,18 @@ export default function AddQuestionForm(props) {
                   fontSize: "20px",
                 }}
               >
-                Add Question 3
+                Option 3
               </label>
               <input
                 type="text"
                 className="form-control"
-                id="courseName"
-                placeholder="Add question"
+                id="option3"
+                placeholder="Add Option"
                 style={{ width: "100%", border: "2px solid #ddd" }}
                 onChange={(e) =>
                   setQuestions({
                     ...questions,
-                    courseName: e.target.value,
+                    "option3": e.target.value,
                   })
                 }
               />
@@ -156,18 +175,18 @@ export default function AddQuestionForm(props) {
                   fontSize: "20px",
                 }}
               >
-                Add Question 4
+                Option 4
               </label>
               <input
                 type="text"
                 className="form-control"
-                id="courseName"
-                placeholder="Add question"
+                id="option4"
+                placeholder="Add Option"
                 style={{ width: "100%", border: "2px solid #ddd" }}
                 onChange={(e) =>
                   setQuestions({
                     ...questions,
-                    courseName: e.target.value,
+                    "option4": e.target.value,
                   })
                 }
               />
@@ -186,13 +205,13 @@ export default function AddQuestionForm(props) {
               <input
                 type="text"
                 className="form-control"
-                id="courseName"
-                placeholder="Add question"
+                id="answer"
+                placeholder="Add A nswer"
                 style={{ width: "100%", border: "2px solid #ddd" }}
                 onChange={(e) =>
                   setQuestions({
                     ...questions,
-                    courseName: e.target.value,
+                    "answer": e.target.value,
                   })
                 }
               />
@@ -201,7 +220,8 @@ export default function AddQuestionForm(props) {
             <button
               type="submit"
               className="btn btn-primary"
-              style={{ backgroundColor: "#4caf50", marginTop: "20px" }}
+                          style={{ backgroundColor: "#4caf50", marginTop: "20px" }}
+                          onClick={console.log(questions)}
             >
               Submit
             </button>
