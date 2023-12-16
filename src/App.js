@@ -8,6 +8,7 @@ import ForumComment from './pages/forumComment';
 import Loginpage from './pages/Loginpage'
 import Signuppage from './pages/Signuppage';
 import MockTestPage from './pages/mock_test/MockTestPage';
+import Questions from './pages/mock_test/Questions';
 function App() {
   return (
     <BrowserRouter>
@@ -17,6 +18,7 @@ function App() {
           <Route path="/" element={<Home />}/>
           <Route path="/studentroom/discussionforum" element={<DiscussionForum />}/>
           <Route path='/studentroom/mocktest' element={<MockTestPage/>}/>
+          <Route path='/studentroom/mocktest/questions' element={<Questions/>}/>
         </Routes>
       
     </BrowserRouter>

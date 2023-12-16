@@ -1,7 +1,7 @@
 import React from 'react'
 import { useState,useEffect } from 'react';
 import { getExamCategories,deleteExamCategory } from '../../../core/api_client';
-import EditExamCategoryModal from '../EditExamCategoryModal';
+import EditExamCategoryModal from '../modals/EditExamCategoryModal';
 import Modal from 'react-modal';
 
 const colors = {
