@@ -1,8 +1,10 @@
 import React from 'react'
-import { useState,useEffect } from 'react';
-import { getExamCategories,deleteExamCategory } from '../../../../../core/api_client';
+import { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
+import { getQuestions } from '../../../../../core/api_client';
 // import EditExamCategoryModal from '../modals/EditExamCategoryModal';
 import Modal from 'react-modal';
+import EditQuestions from './EditQuestions';
 
 const colors = {
     lightRow: "#f8f0f8",
@@ -13,27 +15,44 @@ const colors = {
 };
   
 function ShowQuestions(props) {
-    const [examCategories, setExamCategories] = useState([]);
+    const [questions, setQuestions] = useState([]); 
+    const [selectedQuestion, setSelectedQuestion] = useState({})
+    const { id } = useParams();
+    useEffect(() => {
+        getQuestions(id)
+            .then((response) => response.json())
+            .then((data) => {
+                console.log(data);
+                setQuestions(data);
+                setIsLoading(false);
+            })
+            .catch((err) => {
+                console.log(err)
+                console.log("Error in fetching exam categories:", err.message);
+                alert(err.message);
+            });
+    }, [props.reload])
+    console.log(questions)
     const [isLoading, setIsLoading] = useState(true);
-    const [selectedExamCategory, setSelectedExamCategory] = useState({});//[courseName,topicName,examTime]
+    // const [selectedExamCategory, setSelectedExamCategory] = useState({});//[courseName,topicName,examTime]
     const [showModal, setShowModal] = useState(false);
 
   const handleOpenModal = () => setShowModal(true);
   const handleCloseModal = () => setShowModal(false);
-    const handleDelete = async (id) => {
+    // const handleDelete = async (id) => {
+    //     try {
+    //         const response = await deleteQuestion(id);
+    //         console.log(response);
+    //         alert("Exam Category Deleted Successfully");
+    //         props.callReload();
+    //     } catch (error) {
+    //         console.log(error);
+    //         alert(error.message);
+    //     }
+    // }
+    const handleEdit = async (question) => {
         try {
-            const response = await deleteExamCategory(id);
-            console.log(response);
-            alert("Exam Category Deleted Successfully");
-            props.callReload();
-        } catch (error) {
-            console.log(error);
-            alert(error.message);
-        }
-    }
-    const handleEdit = async (examCategory) => {
-        try {
-            setSelectedExamCategory(examCategory);
+            setSelectedQuestion(question);
             handleOpenModal();
         } catch (error) {
             console.log(error);
@@ -42,19 +61,19 @@ function ShowQuestions(props) {
     }
 
 
-    useEffect(() => {
-        getExamCategories()
-            .then((response) => response.json())
-            .then((data) => {
-                console.log(data);
-                setExamCategories(data);
-                setIsLoading(false);
-            })
-            .catch((err) => {
-                console.log("Error in fetching exam categories:", err.message);
-                alert(err.message);
-            });
-    }, [props.reload]);
+    // useEffect(() => {
+    //     getExamCategories()
+    //         .then((response) => response.json())
+    //         .then((data) => {
+    //             console.log(data);
+    //             setExamCategories(data);
+    //             setIsLoading(false);
+    //         })
+    //         .catch((err) => {
+    //             console.log("Error in fetching exam categories:", err.message);
+    //             alert(err.message);
+    //         });
+    // }, [props.reload]);
   return (
       <div className='main' style={{
         display: "flex",
@@ -68,9 +87,9 @@ function ShowQuestions(props) {
           width: "100%", // Div width
     }}>
         <Modal isOpen={showModal} onRequestClose={handleCloseModal}>
-            {/* <EditExamCategoryModal examCategory={selectedExamCategory} callReload={props.callReload}/> */}
+            <EditQuestions question={selectedQuestion} callReload={props.callReload}/>
         </Modal>
-        <h2 style={{ color: "red" }}>View Question</h2>
+        <h2 style={{ color: "red" }}>View Questions</h2>
         <div className="container" style={{
             border: "2px solid #ddd", // Darker gray border
             padding: "20px", // Padding for form container
@@ -107,25 +126,22 @@ function ShowQuestions(props) {
                     </tr>
                 </thead>
                 <tbody>
-                      {isLoading ? <tr><td>Loading...</td></tr> : examCategories.map((examCategory) => {
+                      {isLoading ? <tr><td>Loading...</td></tr> : questions.map((question) => {
                         
                         return (
-                            <tr key={examCategory._id} >
-                                {/* <th scope="row">{examCategory._id}</th>
-                                <td>{examCategory.courseName}</td>
-                                <td>{examCategory.topicName}</td>
-                                <td>{examCategory.examTime}</td> */}
-                                <td>{examCategory.examTime}</td>
-                                <td>{examCategory.examTime}</td>
-                                <td>{examCategory.examTime}</td>
-                                <td>{examCategory.examTime}</td>
-                                <td>{examCategory.examTime}</td>
-                                <td>{examCategory.examTime}</td>
-                                <td><button className="btn btn-primary" style={{ backgroundColor: colors.editButton }} onClick={() => handleEdit(examCategory)}>Edit</button></td>
-                                <td><button className="btn btn-danger" style={{ backgroundColor: colors.deleteButton }} onClick={() => handleDelete(examCategory._id)}>Delete</button></td>
+                            <tr key={question._id} >
+                                <td>{question.question}</td>
+                                <td>{question.option1}</td>
+                                <td>{question.option2}</td>
+                                <td>{question.option3}</td>
+                                <td>{question.option4}</td>
+                                <td>{question.answer}</td>
+                                <td><button className="btn btn-primary" style={{ backgroundColor: colors.editButton }} onClick={() => handleEdit(question)}>Edit</button></td>
+                                {/* <td><button className="btn btn-danger" style={{ backgroundColor: colors.deleteButton }} onClick={() => handleDelete(question._id)}>Delete</button></td> */}
                             </tr>
                         )
                     })}
+                      
                 </tbody>
             </table>
         </div>

@@ -9,7 +9,7 @@ const addExamCategory = async (examCategory) => {
             'Content-type': 'application/json' ,
         },
     };
-    console.log(fig);
+    
     return fetchWithAuth('http://127.0.0.1:3000/api/mocktest/examCategory/create', fig);
 }
 
@@ -27,7 +27,7 @@ const updateExamCategory = async (examCategory) => {
             'Content-type': 'application/json' ,
         },
     };
-    console.log(fig);
+    
     return fetchWithAuth('http://127.0.0.1:3000/api/mocktest/examCategory/update', fig);
 }
 const deleteExamCategory = async (id) => {
@@ -40,7 +40,7 @@ const deleteExamCategory = async (id) => {
             'Content-type': 'application/json' ,
         },
     };
-    console.log(fig);
+    
     return fetchWithAuth('http://127.0.0.1:3000/api/mocktest/examCategory/delete', fig);
 }
 
@@ -59,21 +59,22 @@ const addQuestion = async (question) => {
             'Content-type': 'application/json' ,
         },
     };
-    console.log(fig);
+    
     return fetchWithAuth('http://127.0.0.1:3000/api/mocktest/addQuestion', fig);
 }
 
 const getQuestions = async (id) => {
     const fig={
-        method: 'GET',
+        method: 'POST',
         body: JSON.stringify({
-            id: id
+            _id: id
         }),
         headers: {
             'Content-type': 'application/json' ,
         },
     };
-    return fetchWithAuth('http://127.0.0.1:3000/api/mocktest/question/all', fig);
+    
+    return fetchWithAuth('http://127.0.0.1:3000/api/mocktest/questions/all', fig);
 }
 
 const updateQuestion = async (question) => {
@@ -86,7 +87,7 @@ const updateQuestion = async (question) => {
             'Content-type': 'application/json' ,
         },
     };
-    console.log(fig);
+    
     return fetchWithAuth('http://127.0.0.1:3000/api/mocktest/question/update', fig);
 }
 
