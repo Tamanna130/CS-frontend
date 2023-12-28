@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Form, FormGroup, FormControl, Button, Alert } from "react-bootstrap";
 import StudentImage from "../templates/Base/images/student.jpg";
-import LoginImage from "../templates/Base/images/Capture.PNG"
+import LoginImage from "../templates/Base/images/Capture.png"
 
 import { login } from "../stores/reducers/userInfo";
 import { useDispatch } from "react-redux";
