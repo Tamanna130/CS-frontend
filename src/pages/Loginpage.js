@@ -1,22 +1,24 @@
 import React, { useState } from "react";
 import { Form, FormGroup, FormControl, Button, Alert } from "react-bootstrap";
 import StudentImage from "../templates/Base/images/student.jpg";
-import LoginImage from "../templates/Base/images/Capture.png"
+import LoginImage from "../templates/Base/images/Capture.PNG";
+import { useNavigate } from 'react-router-dom';
 
 import { login } from "../stores/reducers/userInfo";
 import { useDispatch } from "react-redux";
-import {jwtDecode} from 'jwt-decode';
+import { jwtDecode } from "jwt-decode";
+
 const Loginpage = () => {
+  const navigate = useNavigate();
+
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
 
   const handleLogin = async (e) => {
     e.preventDefault();
-
+  
     try {
-      // Simulated API call to authenticate user
-
       const response = await fetch("http://127.0.0.1:3000/user/login", {
         method: "POST",
         headers: {
@@ -24,21 +26,36 @@ const Loginpage = () => {
         },
         body: JSON.stringify({ username, password }),
       });
-
+  
       const data = await response.json();
-
-      if (data) {
-        // Redirect to protected page or store token
+      console.log("Access Token:", data.access_token);
+  
+      if (data && data.access_token) {
         localStorage.setItem("token", data.access_token);
-        localStorage.setItem("username", jwtDecode(data.access_token).username);
-        // ...
+  
+        try {
+          const decodedToken = jwtDecode(data.access_token);
+          if (decodedToken && decodedToken.username) {
+            localStorage.setItem("username", decodedToken.username);
+            navigate('/');
+          } else {
+            console.error("Invalid decoded token:", decodedToken);
+            setErrorMessage("Invalid token received from the server.");
+          }
+        } catch (decodeError) {
+          console.error("Error decoding token:", decodeError.message);
+          setErrorMessage("Error decoding token received from the server.");
+        }
       } else {
-        setErrorMessage(data.message);
+        setErrorMessage(data.message || "Invalid credentials");
+        console.log("Error Message:", data.message);
       }
     } catch (error) {
-      console.error(error.message);
+      console.error("API Error:", error.message);
+      setErrorMessage("Error communicating with the server.");
     }
   };
+  
 
   const handleChangeUsername = (e) => setUsername(e.target.value);
   const handleChangePassword = (e) => setPassword(e.target.value);
@@ -108,8 +125,8 @@ const Loginpage = () => {
           backgroundSize: "cover",
           backgroundRepeat: "no-repeat",
           // backgroundPosition: "-5% -5%",
-          // justifyContent: "center",
-          alignItems: "center",
+          justifyContent: "left",
+          // alignItems: "center",
         }}
       >
         <h2 className="login_title" style={{
@@ -122,8 +139,8 @@ const Loginpage = () => {
           style={{
             display: "flex",
             flexDirection: "column",
-            alignItems: "center",
-            justifyContent: "center"
+            // alignItems: "center",
+            // justifyContent: "center"
           }}
         >
           
@@ -140,7 +157,7 @@ const Loginpage = () => {
                   borderRadius: "4px",
                   padding: "10px",
                   marginBottom: "10px",
-                  width: "300px"
+                  width: "200px"
                 }}
               />
             </FormGroup>
@@ -177,6 +194,7 @@ const Loginpage = () => {
                 color: "#4C489D",
                 boxShadow: "0px 2px 2px #5C5696",
                 cursor: "pointer",
+
               }}
             >
               Log In
