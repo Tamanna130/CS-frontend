@@ -3,9 +3,10 @@ import { Form, FormGroup, FormControl, Button, Alert } from "react-bootstrap";
 import StudentImage from "../templates/Base/images/student.jpg";
 import LoginImage from "../templates/Base/images/Capture.PNG";
 import { useNavigate } from 'react-router-dom';
-
 import { login } from "../stores/reducers/userInfo";
 import { useDispatch } from "react-redux";
+import {jwtDecode} from 'jwt-decode';
+import { Link } from "react-router-dom";
 import { jwtDecode } from "jwt-decode";
 
 const Loginpage = () => {
@@ -127,18 +128,23 @@ const Loginpage = () => {
           // backgroundPosition: "-5% -5%",
           justifyContent: "left",
           // alignItems: "center",
+          justifyContent: "left",
+          // alignItems: "center",
         }}
       >
         <h2 className="login_title" style={{
-          color: "#fff",
-          marginTop: "30px",
-          marginBottom: "50px"
+          color: "black",
+          marginTop: "100px",
+          marginBottom: "40px",
+          marginLeft: "30px"
         }}>Login</h2>
         
         <div
           style={{
             display: "flex",
             flexDirection: "column",
+            // alignItems: "center",
+            // justifyContent: "center"
             // alignItems: "center",
             // justifyContent: "center"
           }}
@@ -155,8 +161,10 @@ const Loginpage = () => {
                 style={{
                   borderColor: "#ddd",
                   borderRadius: "4px",
-                  padding: "10px",
+                  padding: "5px",
                   marginBottom: "10px",
+                  marginLeft: "30px",
+                  width: "250px"
                   width: "200px"
                 }}
               />
@@ -171,8 +179,10 @@ const Loginpage = () => {
                 style={{
                   borderColor: "#ddd",
                   borderRadius: "4px",
-                  padding: "10px",
-                  marginBottom: "10px"
+                  padding: "5px",
+                  marginBottom: "20px",
+                  marginLeft: "30px",
+                  width: "250px"
                 }}
               />
             </FormGroup>
@@ -182,7 +192,7 @@ const Loginpage = () => {
               style={{
                 background: "#fff",
                 fontSize: "14px",
-                height: "40px",
+                height: "30px",
                 padding: "16px 20px",
                 borderRadius: "4px",
                 border: "1px solid #D4D3E8",
@@ -194,11 +204,24 @@ const Loginpage = () => {
                 color: "#4C489D",
                 boxShadow: "0px 2px 2px #5C5696",
                 cursor: "pointer",
+                marginLeft: "30px"
 
               }}
             >
               Log In
             </Button>
+
+            {/* create new account ? */}
+            <div style={{
+              marginLeft: "30px",
+              marginTop: "10px",
+            }}>
+              <Link to="/signup">
+              <p style={{ color: "black", fontSize: "14px" }}>
+                Don't have an account ?
+              </p>
+              </Link>
+            </div>
           </Form>
           {errorMessage && (
             <Alert
