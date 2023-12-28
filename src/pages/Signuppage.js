@@ -1,45 +1,48 @@
 import React, { useState } from "react";
 import { Form, FormGroup, FormControl, Button, Alert } from "react-bootstrap";
 import StudentImage from "../templates/Base/images/student.jpg";
-import LoginImage from "../templates/Base/images/Capture.PNG"
-
-import { login } from "../stores/reducers/userInfo";
+import SignupImage from "../templates/Base/images/Capture.PNG"; // Change image for signup
 import { useDispatch } from "react-redux";
-import {jwtDecode} from 'jwt-decode';
+import { jwtDecode } from "jwt-decode";
 import { Link } from "react-router-dom";
-const Loginpage = () => {
+import { useNavigate } from 'react-router-dom';
+
+const SignupPage = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
-
-  const handleLogin = async (e) => {
+  const navigate = useNavigate();
+  const handleSignup = async (e) => {
     e.preventDefault();
-
+  
     try {
-      // Simulated API call to authenticate user
-
-      const response = await fetch("http://127.0.0.1:3000/user/login", {
+      // Simulated API call to register user
+      const response = await fetch("http://127.0.0.1:3000/user/signup", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({ username, password }),
       });
-
+  
       const data = await response.json();
-
-      if (data) {
-        // Redirect to protected page or store token
-        localStorage.setItem("token", data.access_token);
-        localStorage.setItem("username", jwtDecode(data.access_token).username);
-        // ...
+  
+      if (response.ok) {
+        // Successful registration
+        navigate('/login');
+        console.log("User registered successfully");
+        // Optionally, redirect to the login page or perform other actions
       } else {
-        setErrorMessage(data.message);
+        // Check if the user already exists
+        setErrorMessage("User already exists. Please choose a different username.");
+
       }
     } catch (error) {
       console.error(error.message);
+      setErrorMessage("An error occurred. Please try again later.");
     }
   };
+  
 
   const handleChangeUsername = (e) => setUsername(e.target.value);
   const handleChangePassword = (e) => setPassword(e.target.value);
@@ -53,7 +56,6 @@ const Loginpage = () => {
         alignItems: "center",
         justifyContent: "center",
         minHeight: "100vh",
-        // minWidth: "310vh",
         background: "linear-gradient(90deg, #C7C5F4, #776BCC)",
         overflow: "hidden",
       }}
@@ -97,7 +99,6 @@ const Loginpage = () => {
       <div
         className="right"
         style={{
-          // background: "linear-gradient(90deg, #5D54A4, #7C78B8)",
           boxShadow: "0px 0px 24px #5C5696",
           borderRadius: "16px",
           overflow: "hidden",
@@ -105,15 +106,13 @@ const Loginpage = () => {
           width: "360px",
           display: "flex",
           flexDirection: "column",
-          backgroundImage: `url(${LoginImage})`,
+          backgroundImage: `url(${SignupImage})`, // Change image for signup
           backgroundSize: "cover",
           backgroundRepeat: "no-repeat",
-          // backgroundPosition: "-5% -5%",
           justifyContent: "left",
-          // alignItems: "center",
         }}
       >
-        <h2 className="login_title" style={{
+        <h2 className="signup_title" style={{
           color: "black",
           marginTop: "100px",
           marginBottom: "40px",
@@ -124,12 +123,10 @@ const Loginpage = () => {
           style={{
             display: "flex",
             flexDirection: "column",
-            // alignItems: "center",
-            // justifyContent: "center"
           }}
         >
           
-          <Form onSubmit={handleLogin}>
+          <Form onSubmit={handleSignup}>
             <FormGroup>
               <FormControl
                 type="text"
@@ -188,15 +185,15 @@ const Loginpage = () => {
               Signup
             </Button>
 
-            {/* create new account ? */}
+            {/* Already have an account? */}
             <div style={{
               marginLeft: "30px",
               marginTop: "10px",
             }}>
               <Link to="/login">
-              <p style={{ color: "black", fontSize: "14px" }}>
-                Already have an account ?
-              </p>
+                <p style={{ color: "black", fontSize: "14px" }}>
+                  Already have an account? Login
+                </p>
               </Link>
             </div>
           </Form>
@@ -220,4 +217,4 @@ const Loginpage = () => {
   );
 };
 
-export default Loginpage;
+export default SignupPage;
