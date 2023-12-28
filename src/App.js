@@ -4,7 +4,6 @@ import ReactDOM from "react-dom/client";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from './pages/homePage';
 import DiscussionForum from './pages/forum';
-import ForumComment from './pages/forumComment';
 import Loginpage from './pages/Loginpage'
 import Signuppage from './pages/Signuppage';
 import MockTestPage from './pages/mock_test/MockTestPage';
