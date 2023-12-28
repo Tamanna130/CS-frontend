@@ -4,11 +4,11 @@ import ReactDOM from "react-dom/client";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from './pages/homePage';
 import DiscussionForum from './pages/forum';
-import ForumComment from './pages/forumComment';
 import Loginpage from './pages/Loginpage'
 import Signuppage from './pages/Signuppage';
 import MockTestPage from './pages/mock_test/MockTestPage';
-import Questions from './pages/mock_test/Questions';
+import Questions from './pages/mock_test/questions/Questions';
+import AddQuestions from './pages/mock_test/questions/AddQuestions'
 function App() {
   return (
     <BrowserRouter>
@@ -19,6 +19,7 @@ function App() {
           <Route path="/studentroom/discussionforum" element={<DiscussionForum />}/>
           <Route path='/studentroom/mocktest' element={<MockTestPage/>}/>
           <Route path='/studentroom/mocktest/questions' element={<Questions/>}/>
+          <Route path='/studentroom/mocktest/add-questions/:id' element={<AddQuestions/>}/>
         </Routes>
       
     </BrowserRouter>

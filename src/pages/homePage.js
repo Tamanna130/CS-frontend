@@ -7,8 +7,9 @@ import SectionCard from '../templates/Base/HomepageCards';
 export default function Home() {
   return (
     <>
+      <AppHeader/>
         <HomeCarousel></HomeCarousel>
-
+        
         <Container>
           <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }} className='my-4'>
           <h2>StudentRoom - Browse Categories</h2>

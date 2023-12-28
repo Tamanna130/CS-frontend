@@ -1,9 +1,8 @@
 import React from 'react'
 import { useState,useEffect } from 'react';
-import { getExamCategories,deleteExamCategory } from '../../core/api_client';
-import EditExamCategoryModal from '../mock_test/modals/EditExamCategoryModal';
-import Modal from 'react-modal';
-import AppHeader from '../../templates/Base/Navbar';
+import { getExamCategories} from '../../../core/api_client';
+import AppHeader from '../../../templates/Base/Navbar';
+import { useNavigate } from 'react-router-dom';
 
 const colors = {
     lightRow: "#f8f0f8",
@@ -16,33 +15,8 @@ const colors = {
 function Questions(props) {
     const [examCategories, setExamCategories] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
-    const [selectedExamCategory, setSelectedExamCategory] = useState({});//[courseName,topicName,examTime]
-    const [showModal, setShowModal] = useState(false);
-
-  const handleOpenModal = () => setShowModal(true);
-  const handleCloseModal = () => setShowModal(false);
-    const handleDelete = async (id) => {
-        try {
-            const response = await deleteExamCategory(id);
-            console.log(response);
-            alert("Exam Category Deleted Successfully");
-            props.callReload();
-        } catch (error) {
-            console.log(error);
-            alert(error.message);
-        }
-    }
-    const handleEdit = async (examCategory) => {
-        try {
-            setSelectedExamCategory(examCategory);
-            handleOpenModal();
-        } catch (error) {
-            console.log(error);
-            alert(error.message);
-        }
-    }
-
-
+    const navigate = useNavigate();
+    
     useEffect(() => {
         getExamCategories()
             .then((response) => response.json())
@@ -72,10 +46,7 @@ function Questions(props) {
             padding: "20px", // Padding for content
             width: "50%", // Div width
         }}>
-            <Modal isOpen={showModal} onRequestClose={handleCloseModal}>
-                <EditExamCategoryModal examCategory={selectedExamCategory} callReload={props.callReload}/>
-            </Modal>
-            <h2 style={{ color: "red" }}>Select Exam Categories for Add and Edit Questions</h2>
+            <h2 style={{ color: "green" }}>Select Exam Categories for Add and Edit Questions</h2>
             <div className="container" style={{
                 border: "2px solid #ddd", // Darker gray border
                 padding: "20px", // Padding for form container
@@ -110,10 +81,11 @@ function Questions(props) {
                                     <td>{examCategory.courseName}</td>
                                     <td>{examCategory.topicName}</td>
                                     <td>{examCategory.examTime}</td>
-                                    <td><button className="btn btn-primary" style={{ backgroundColor: colors.editButton }} onClick={() => handleEdit(examCategory)}>Select</button></td>
+                                    <td><button className="btn btn-primary" style={{ backgroundColor: colors.editButton }} onClick={() => navigate(`/studentroom/mocktest/add-questions/${examCategory._id}`)}>Select</button></td>
                                 </tr>
                             )
                         })}
+
                     </tbody>
                 </table>
             </div>

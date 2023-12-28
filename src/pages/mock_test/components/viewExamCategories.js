@@ -41,7 +41,6 @@ function ViewExamCategories(props) {
         }
     }
 
-
     useEffect(() => {
         getExamCategories()
             .then((response) => response.json())
