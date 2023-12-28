@@ -7,8 +7,6 @@ import { login } from "../stores/reducers/userInfo";
 import { useDispatch } from "react-redux";
 import {jwtDecode} from 'jwt-decode';
 import { Link } from "react-router-dom";
-import { jwtDecode } from "jwt-decode";
-
 const Loginpage = () => {
   const navigate = useNavigate();
 
@@ -128,8 +126,6 @@ const Loginpage = () => {
           // backgroundPosition: "-5% -5%",
           justifyContent: "left",
           // alignItems: "center",
-          justifyContent: "left",
-          // alignItems: "center",
         }}
       >
         <h2 className="login_title" style={{
@@ -143,8 +139,6 @@ const Loginpage = () => {
           style={{
             display: "flex",
             flexDirection: "column",
-            // alignItems: "center",
-            // justifyContent: "center"
             // alignItems: "center",
             // justifyContent: "center"
           }}
@@ -165,7 +159,6 @@ const Loginpage = () => {
                   marginBottom: "10px",
                   marginLeft: "30px",
                   width: "250px"
-                  width: "200px"
                 }}
               />
             </FormGroup>
@@ -205,7 +198,6 @@ const Loginpage = () => {
                 boxShadow: "0px 2px 2px #5C5696",
                 cursor: "pointer",
                 marginLeft: "30px"
-
               }}
             >
               Log In
