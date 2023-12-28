@@ -210,7 +210,7 @@ const Loginpage = () => {
             }}>
               <Link to="/signup">
               <p style={{ color: "black", fontSize: "14px" }}>
-                Create an account 
+                Create an account
               </p>
               </Link>
             </div>
