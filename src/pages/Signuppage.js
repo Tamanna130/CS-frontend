@@ -25,7 +25,7 @@ const SignupPage = () => {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ usertype, username, password }),
+        body: JSON.stringify({ userType:usertype, username, password }),
       });
   
       const data = await response.json();
@@ -110,7 +110,7 @@ const SignupPage = () => {
           width: "360px",
           display: "flex",
           flexDirection: "column",
-          backgroundImage: `url(${SignupImage})`, // Change image for signup
+          backgroundImage: `url(${SignupImage})`,
           backgroundSize: "cover",
           backgroundRepeat: "no-repeat",
           justifyContent: "left",

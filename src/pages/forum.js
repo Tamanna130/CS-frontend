@@ -38,9 +38,10 @@ export default function DiscussionForum() {
       },
     };
     console.log(fig);
-    fetchWithAuth("http://127.0.0.1:3000/api/post/create", fig)
+    fetchWithAuth("http://103.87.215.12:3000/api/post/create", fig)
       .then((response) => {
         console.log(response);
+
         return response.json();
       })
       .then((data) => {
@@ -48,6 +49,7 @@ export default function DiscussionForum() {
         if (data.error) {
           throw new Error(data.error);
         }
+        alert("Added succesfully!");
         setPosts((posts) => [...posts, data]);
       })
       .catch((err) => {
@@ -57,7 +59,7 @@ export default function DiscussionForum() {
   };
 
   useEffect(() => {
-    fetchWithAuth("http://127.0.0.1:3000/api/post/all")
+    fetchWithAuth("http://103.87.215.12:3000/api/post/all")
       .then((response) => response.json())
       .then((data) => {
         console.log(data);

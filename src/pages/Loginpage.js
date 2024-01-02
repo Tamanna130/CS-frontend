@@ -25,9 +25,9 @@ const Loginpage = () => {
         },
         body: JSON.stringify({ username, password }),
       });
-  
       const data = await response.json();
       console.log("Access Token:", data.access_token);
+      console.log(data.userType)
       if (data.error) {
         setErrorMessage(data.error);
         return; 
@@ -35,7 +35,7 @@ const Loginpage = () => {
   
       if (data && data.access_token) {
         localStorage.setItem("token", data.access_token);
-  
+        localStorage.setItem("userType", data.userType);
         try {
           const decodedToken = jwtDecode(data.access_token);
           if (decodedToken && decodedToken.username) {
