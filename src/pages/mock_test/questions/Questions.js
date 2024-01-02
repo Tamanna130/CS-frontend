@@ -21,6 +21,9 @@ function Questions(props) {
         getExamCategories()
             .then((response) => response.json())
             .then((data) => {
+                if (data.error) {
+                    throw new Error(data.error);
+                }
                 console.log(data);
                 setExamCategories(data);
                 setIsLoading(false);
@@ -28,6 +31,7 @@ function Questions(props) {
             .catch((err) => {
                 console.log("Error in fetching exam categories:", err.message);
                 alert(err.message);
+                navigate("/");
             });
     }, [props.reload]);
   return (
