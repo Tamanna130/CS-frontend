@@ -2,6 +2,7 @@ import React from 'react'
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { getQuestions } from '../../../../../core/api_client';
+import { deleteQuestion } from '../../../../../core/api_client';
 // import EditExamCategoryModal from '../modals/EditExamCategoryModal';
 import Modal from 'react-modal';
 import EditQuestions from './EditQuestions';
@@ -39,17 +40,17 @@ function ShowQuestions(props) {
 
   const handleOpenModal = () => setShowModal(true);
   const handleCloseModal = () => setShowModal(false);
-    // const handleDelete = async (id) => {
-    //     try {
-    //         const response = await deleteQuestion(id);
-    //         console.log(response);
-    //         alert("Exam Category Deleted Successfully");
-    //         props.callReload();
-    //     } catch (error) {
-    //         console.log(error);
-    //         alert(error.message);
-    //     }
-    // }
+    const handleDelete = async (id) => {
+        try {
+            const response = await deleteQuestion(id);
+            console.log(response);
+            alert("Exam Category Deleted Successfully");
+            props.callReload();
+        } catch (error) {
+            console.log(error);
+            alert(error.message);
+        }
+    }
     const handleEdit = async (question) => {
         try {
             setSelectedQuestion(question);
@@ -137,7 +138,7 @@ function ShowQuestions(props) {
                                 <td>{question.option4}</td>
                                 <td>{question.answer}</td>
                                 <td><button className="btn btn-primary" style={{ backgroundColor: colors.editButton }} onClick={() => handleEdit(question)}>Edit</button></td>
-                                {/* <td><button className="btn btn-danger" style={{ backgroundColor: colors.deleteButton }} onClick={() => handleDelete(question._id)}>Delete</button></td> */}
+                                <td><button className="btn btn-danger" style={{ backgroundColor: colors.deleteButton }} onClick={() => handleDelete(question._id)}>Delete</button></td>
                             </tr>
                         )
                     })}

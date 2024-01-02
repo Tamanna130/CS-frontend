@@ -10,11 +10,11 @@ const addExamCategory = async (examCategory) => {
         },
     };
     
-    return fetchWithAuth('http://127.0.0.1:3000/api/mocktest/examCategory/create', fig);
+    return fetchWithAuth('http://103.87.215.12:3000/api/mocktest/examCategory/create', fig);
 }
 
 const getExamCategories = async () => {
-    return fetchWithAuth('http://127.0.0.1:3000/api/mocktest/examCategory/all')
+    return fetchWithAuth('http://103.87.215.12:3000/api/mocktest/examCategory/all')
 }
 
 const updateExamCategory = async (examCategory) => {
@@ -28,7 +28,7 @@ const updateExamCategory = async (examCategory) => {
         },
     };
     
-    return fetchWithAuth('http://127.0.0.1:3000/api/mocktest/examCategory/update', fig);
+    return fetchWithAuth('http://103.87.215.12:3000/api/mocktest/examCategory/update', fig);
 }
 const deleteExamCategory = async (id) => {
     const fig={
@@ -41,12 +41,26 @@ const deleteExamCategory = async (id) => {
         },
     };
     
-    return fetchWithAuth('http://127.0.0.1:3000/api/mocktest/examCategory/delete', fig);
+    return fetchWithAuth('http://103.87.215.12:3000/api/mocktest/examCategory/delete', fig);
+}
+
+const deleteQuestion = async (id) => {
+    const fig={
+        method: 'DELETE',
+        body: JSON.stringify({
+            id: id
+        }),
+        headers: {
+            'Content-type': 'application/json' ,
+        },
+    };
+    
+    return fetchWithAuth('http://103.87.215.12:3000/api/mocktest/deleteQuestion/delete', fig);
 }
 
 
 const getExamCategory = async (id) => {
-    return fetchWithAuth(`http://127.0.0.1:3000/api/mocktest/examCategory/get/${id}`);
+    return fetchWithAuth(`http://103.87.215.12:3000/api/mocktest/examCategory/get/${id}`);
 }
 
 const addQuestion = async (question) => {
@@ -60,7 +74,7 @@ const addQuestion = async (question) => {
         },
     };
     
-    return fetchWithAuth('http://127.0.0.1:3000/api/mocktest/addQuestion', fig);
+    return fetchWithAuth('http://103.87.215.12:3000/api/mocktest/addQuestion', fig);
 }
 
 const getQuestions = async (id) => {
@@ -74,7 +88,7 @@ const getQuestions = async (id) => {
         },
     };
     
-    return fetchWithAuth('http://127.0.0.1:3000/api/mocktest/questions/all', fig);
+    return fetchWithAuth('http://103.87.215.12:3000/api/mocktest/questions/all', fig);
 }
 
 const updateQuestion = async (question) => {
@@ -88,7 +102,9 @@ const updateQuestion = async (question) => {
         },
     };
     
-    return fetchWithAuth('http://127.0.0.1:3000/api/mocktest/question/update', fig);
+    return fetchWithAuth('http://103.87.215.12:3000/api/mocktest/question/update', fig);
 }
 
-export {addExamCategory, getExamCategories, getExamCategory, updateExamCategory,deleteExamCategory, addQuestion, getQuestions, updateQuestion};
+
+
+export {addExamCategory, getExamCategories, getExamCategory, updateExamCategory,deleteQuestion,deleteExamCategory, addQuestion, getQuestions, updateQuestion};

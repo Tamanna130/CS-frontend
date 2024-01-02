@@ -18,7 +18,7 @@ const Loginpage = () => {
     e.preventDefault();
   
     try {
-      const response = await fetch("http://127.0.0.1:3000/user/login", {
+      const response = await fetch("http://103.87.215.12:3000/user/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -28,6 +28,10 @@ const Loginpage = () => {
   
       const data = await response.json();
       console.log("Access Token:", data.access_token);
+      if (data.error) {
+        setErrorMessage(data.error);
+        return; 
+      }
   
       if (data && data.access_token) {
         localStorage.setItem("token", data.access_token);

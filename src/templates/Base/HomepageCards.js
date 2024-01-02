@@ -37,11 +37,11 @@ export default function SectionCard() {
       <Card style={{ width: '18rem' }}>
         <Card.Img variant="top" src={QuestionBankImage} />
         <Card.Body>
-          <Card.Title>Question Bank</Card.Title>
+          <Card.Title>Add Questions</Card.Title>
           <Card.Text>
           Solve previous questions and take a better preparation.
           </Card.Text>
-          <Button variant="primary">Visit Section</Button>
+          <Button variant="primary" href='/studentroom/mocktest/questions'>Visit Section</Button>
         </Card.Body>
       </Card>
       </div>

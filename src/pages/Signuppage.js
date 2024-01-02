@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Form, FormGroup, FormControl, Button, Alert } from "react-bootstrap";
 import StudentImage from "../templates/Base/images/student.jpg";
-import LoginImage from "../templates/Base/images/Capture.png"
+import SignupImage from "../templates/Base/images/Capture.png"
 
 import { login } from "../stores/reducers/userInfo";
 import { useDispatch } from "react-redux";
@@ -11,6 +11,7 @@ import { useNavigate } from 'react-router-dom';
 
 const SignupPage = () => {
   const [username, setUsername] = useState("");
+  const [usertype, setUsertype] = useState("");
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
   const navigate = useNavigate();
@@ -19,12 +20,12 @@ const SignupPage = () => {
   
     try {
       // Simulated API call to register user
-      const response = await fetch("http://127.0.0.1:3000/user/signup", {
+      const response = await fetch("http://103.87.215.12:3000/user/signup", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ username, password }),
+        body: JSON.stringify({ usertype, username, password }),
       });
   
       const data = await response.json();
@@ -46,6 +47,7 @@ const SignupPage = () => {
   };
   
 
+  const handleChangeUsertype = (e) => setUsertype(e.target.value);
   const handleChangeUsername = (e) => setUsername(e.target.value);
   const handleChangePassword = (e) => setPassword(e.target.value);
 
@@ -127,8 +129,29 @@ const SignupPage = () => {
             flexDirection: "column",
           }}
         >
-          
           <Form onSubmit={handleSignup}>
+            <label htmlFor='userType'
+              style={{
+              borderColor: "#ddd",
+              borderRadius: "4px",
+              padding: "5px",
+              marginLeft: "30px",
+              width: "250px"
+            }}>User Type:</label><br />
+            <select id='userType' name='userType' 
+              onChange={handleChangeUsertype}
+              style={{
+              borderColor: "#ddd",
+              borderRadius: "4px",
+              padding: "5px",
+              marginBottom: "20px",
+              marginLeft: "30px",
+              width: "250px"
+            }}>
+              <option value='student'>Student</option>
+              <option value='admin'>Admin</option>
+            </select>
+
             <FormGroup>
               <FormControl
                 type="text"
