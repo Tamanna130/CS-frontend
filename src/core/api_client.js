@@ -55,7 +55,7 @@ const deleteQuestion = async (id) => {
         },
     };
     
-    return fetchWithAuth('http://103.87.215.12:3000/api/mocktest/deleteQuestion/delete', fig);
+    return fetchWithAuth('http://103.87.215.12:3000/api/mocktest/deleteQuestion', fig);
 }
 
 
